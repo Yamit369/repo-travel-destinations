@@ -119,23 +119,23 @@ app.post('/users/:id/destinations',(req, res)=>{
         }
 
 //here before sent it to the data base we need to know who is the user that is sent it.
-Travels.findUserById(id)
-.then(user=>{
-    if(!user){
-        res.status(404).json({message:"User does not exist"})
-    }
-    if(!newDestination.title || !newDestination.description){
-        res.status(400).json({message:"All fields must be completed"})
-    }
+    Travels.findUserById(id)
+        .then(user=>{
+            if(!user){
+                res.status(404).json({message:"User does not exist"})
+            }
+            if(!newDestination.title || !newDestination.description){
+                res.status(400).json({message:"All fields must be completed"})
+            }
 
-    Travels.addDestination(newDestination, id)
-    .then(destination=>{
-            res.status(200).json(destination)
+            Travels.addDestination(newDestination, id)
+            .then(destination=>{
+                    res.status(200).json(destination)
+            })
+            .catch(error=>{
+                res.status(500).json({message:"server has failed"})
+            })
     })
-    .catch(error=>{
-        res.status(500).json({message:"server has failed"})
-    })
-})
     
 
 })
