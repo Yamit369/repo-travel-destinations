@@ -41,7 +41,12 @@ async function addDestination (newDestination, user_id) {
     await db("destinations")
     .where({user_id:user_id})
     .insert(newDestination)
-    // return db('destinations')
+}
+
+function removeDestination (id) {
+return db('destinations')
+.where({id:id})
+.del()
 }
 
 

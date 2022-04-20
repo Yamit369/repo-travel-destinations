@@ -87,7 +87,7 @@ app.delete('/users/:id',(req,res)=>{
         if(count>0){
             res.status(200).json({message:"user is deleted."})
         }else{
-            res.status(404).json({message:"Not user with that id"})
+            res.status(404).json({message:"No user with that id"})
         }
     })
     .catch(error=>{
@@ -118,7 +118,7 @@ app.post('/users/:id/destinations',(req, res)=>{
             newDestination["user_id"] = parseInt(id,10)  // this is done in order to combine into our object newDestination the id that can be sent through body or params --but since the id the we are receiving is a stream we need to convert it into a integer and tha is the special function 
         }
 
-//here before sent it to the data base we need to know who is the user that is sent it.
+        //here before sent it to the data base we need to know who is the user that is sent it.
     Travels.findUserById(id)
         .then(user=>{
             if(!user){
@@ -139,7 +139,22 @@ app.post('/users/:id/destinations',(req, res)=>{
     
 
 })
-//adding a simple line of comment 
+
+app.delete("/destinations/:id",(req,res)=>{
+    const {id}=req.params;
+
+    Travels.removeDestination(id)
+    .then(count =>{
+        if(count>0){
+            res.status(200).json({message:"Destination is deleted."})
+        }else{
+            res.status(404).json({message:"No destination with that id"})
+        }
+    })
+    .catch(error=>{
+        res.status(500).json(error)
+    })
+})
 
 
 

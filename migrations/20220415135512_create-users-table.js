@@ -12,7 +12,7 @@ exports.up = function(knex) {
     .createTable('destinations', tbl=>{
         tbl.increments()
         tbl.text('title',200).notNullable().index()
-        tbl.text('description').notNullable()
+        tbl.text('description',700).notNullable()
         tbl.text('imgUrl').notNullable()
         tbl.timestamps(true,true)
         tbl.integer('user_id').notNullable().unsigned().references('id').inTable('users').onDelete('CASCADE').onUpdate('CASCADE')
