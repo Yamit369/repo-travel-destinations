@@ -128,13 +128,13 @@ Travels.findUserById(id)
         res.status(400).json({message:"All fields must be completed"})
     }
 
-Travels.addDestination(newDestination, id)
-.then(destination=>{
-        res.status(200).json(destination)
-})
-.catch(error=>{
-    res.status(500).json({message:"server has failed"})
-})
+    Travels.addDestination(newDestination, id)
+    .then(destination=>{
+            res.status(200).json(destination)
+    })
+    .catch(error=>{
+        res.status(500).json({message:"server has failed"})
+    })
 })
     
 
