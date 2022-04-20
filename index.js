@@ -156,6 +156,17 @@ app.delete("/destinations/:id",(req,res)=>{
     })
 })
 
+app.patch('/destinations/:id',(req,res)=>{
+    const {id}=req.params;
+    Travels.updateDestination(id,req.body)
+    .then(destination=>{
+        res.status(200).json({message:"destination updated"})
+    })
+    .catch(error=>{
+        res.status(500).json(error)
+    })
+})  // the differences between patch and put is that patch updates the part of the data that you one to change, like username, but if you use put it is for the entire object that data base may have
+
 
 
 

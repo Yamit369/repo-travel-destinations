@@ -13,20 +13,20 @@ async function addUser(user){
 
 //for every end point we need to creat a user
 function getAllUsers(){
-    return db('users')
+    return db('users').orderBy('id','desc')
 }
 
-function finUserByUserName (username){
+function finUserByUserName (username) {
     return db('users').where({username:username}).first();
 }
 
 //function of getting user by id
-function findUserById (id){
+function findUserById (id) {
     return db('users').where({id:id}).first();
 }
 
 //function for removing user
-function removeUser (id){
+function removeUser (id) {
     return db('users')
     .where({id:id})
     .del()
@@ -34,7 +34,7 @@ function removeUser (id){
 
 //DESTINATION FUNCTIONS
 function getAllDestinations () {
-    return db('destinations')
+    return db('destinations').orderBy('id','desc')
 }
 
 async function addDestination (newDestination, user_id) {
@@ -49,6 +49,12 @@ return db('destinations')
 .del()
 }
 
+function updateDestination (id,newDestination) {
+return db('destinations')
+.where({id:id})
+.update(newDestination)
+}
+
 
 
 module.exports ={
@@ -58,6 +64,8 @@ module.exports ={
     findUserById,
     removeUser,
     getAllDestinations,
-    addDestination
+    addDestination,
+    removeDestination,
+    updateDestination
 
 }
