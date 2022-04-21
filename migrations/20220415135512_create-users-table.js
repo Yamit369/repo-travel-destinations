@@ -13,7 +13,6 @@ exports.up = function(knex) {
         tbl.increments()
         tbl.text('title').notNullable().index()
         tbl.text('description').notNullable()
-        // tbl.text('imgUrl').notNullable()
         tbl.timestamps(true,true)
         tbl.integer('user_id').notNullable().unsigned().references('id').inTable('users').onDelete('CASCADE').onUpdate('CASCADE')
     })

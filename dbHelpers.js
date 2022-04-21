@@ -36,10 +36,10 @@ function getUsersDestinations (user_id) {
 return db("users")
 .join("destinations","users.id","destinations.user_id")
 .select(
-    "users.id",
-    "users.imageUrl",
-    "destinations.id",
-    "destinations.title"
+    "users.id as UserId",
+    "users.imageUrl as UserImage",
+    "destinations.id as DestinationId",
+    "destinations.title as DestinationTitle"
 )
 .where({user_id:user_id})
 }
