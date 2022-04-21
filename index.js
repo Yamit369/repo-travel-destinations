@@ -94,6 +94,18 @@ app.delete('/users/:id',(req,res)=>{
         res.status(500).json(error)
     })
 })
+//the path or route can be the same but the method is different for one is post the other one is get
+app.get('/users/:id/destinations',(req,res)=>{
+    const {id}=req.params;
+    Travels.getUsersDestinations(id)
+    .then(destinations=>{
+        res.status(200).json(destinations)
+    })
+    .catch(error=>{
+        res.status(500).json({message:"Cannot get that destination"})
+    })
+})  
+
 
 
 //DESTINATIONS ROUTS

@@ -32,6 +32,18 @@ function removeUser (id) {
     .del()
 }
 
+function getUsersDestinations (user_id) {
+return db("users")
+.join("destinations","users.id","destinations.user_id")
+.select(
+    "users.id",
+    "users.imageUrl",
+    "destinations.id",
+    "destinations.title"
+)
+.where({user_id:user_id})
+}
+
 //DESTINATION FUNCTIONS
 function getAllDestinations () {
     return db('destinations').orderBy('id','desc')
@@ -66,6 +78,7 @@ module.exports ={
     getAllDestinations,
     addDestination,
     removeDestination,
-    updateDestination
+    updateDestination,
+    getUsersDestinations
 
 }
