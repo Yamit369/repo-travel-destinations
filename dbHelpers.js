@@ -37,10 +37,10 @@ function getAllDestinations () {
     return db('destinations').orderBy('id','desc')
 }
 
-async function addDestination (newDestination, user_id) {
+async function addDestination (newDestination,user_id) {
     await db("destinations")
     .where({user_id:user_id})
-    .insert(newDestination)
+    .insert(newDestination,["id"])
 }
 
 function removeDestination (id) {
