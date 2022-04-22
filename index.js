@@ -180,6 +180,20 @@ app.patch('/destinations/:id',(req,res)=>{
 })  // the differences between patch and put is that patch updates the part of the data that you one to change, like username, but if you use put it is for the entire object that data base may have
 
 
+//GROUP OF DESTINATIONS
+
+app.get('/destinationsNumbers',(req,res)=>{
+    Travels.groupDestinations()
+    .then(destination=>{
+        res.status(200).json(destination)
+    })
+    .catch(error=>{
+        res.status(500).json(error)
+    })
+
+    
+})
+
 
 
 //LISTENING METHOD

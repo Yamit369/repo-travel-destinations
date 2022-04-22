@@ -41,7 +41,7 @@ return db("users")
     "destinations.id as DestinationId",
     "destinations.title as DestinationTitle"
 )
-.where({user_id:user_id})
+    .where({user_id:user_id})
 }
 
 //DESTINATION FUNCTIONS
@@ -56,16 +56,26 @@ async function addDestination (newDestination,user_id) {
 }
 
 function removeDestination (id) {
-return db('destinations')
+return db("destinations")
 .where({id:id})
 .del()
 }
 
 function updateDestination (id,newDestination) {
-return db('destinations')
+return db("destinations")
 .where({id:id})
 .update(newDestination)
 }
+
+function groupDestinations () {
+    return db("destinations")
+    .groupBy("title")
+    .select(
+        "destinations.id",
+        "destinations.title"
+    )
+}
+
 
 
 
@@ -79,6 +89,7 @@ module.exports ={
     addDestination,
     removeDestination,
     updateDestination,
-    getUsersDestinations
+    getUsersDestinations,
+    groupDestinations
 
 }
